@@ -1,0 +1,127 @@
+<div class='container'>
+  <h1 class="text-center">{{this.title}}</h1>
+
+<div *ngIf="cardData">
+  <ul>
+    <li *ngFor="let card of cardData">
+       <span>{{card.entry}}</span>
+    </li>
+  </ul>
+</div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
+  
+ 
+<mat-card>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+ 
+        <div class="form-group">
+          <label for="allergies">Do you have allergies? </label>
+          <input type="radio" value='Yes'  id="allergies" name="allergies" formControlName="allergies">True
+          <input type="radio" value='No'  id="allergies" name="allergies" formControlName="allergies">False
+        </div>
+       
+        <div class="form-group">
+          <label for="gender">What is your gender? </label>
+         
+            <select formControlName="gender" class="form-control">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              </select>
+
+        </div>
+       
+        <div class="form-group">
+          <label for="dob">What is your date of birth? </label>
+          <input type="date" id="dob" name="dob" class="form-control" formControlName="dob">
+        </div>
+       
+        <div class="form-group">
+          <label for="country">What is your country of birth? </label>
+          <input type="text" id="country" name="country" class="form-control" formControlName="country">
+        </div>
+        
+       
+        <div class="form-group">
+          <label for="isMarried">What is your marital status? </label>
+          <select formControlName="isMarried" class="form-control">
+            <option value="Married">Married</option>
+            <option value="Single">Single</option>
+            <option value="Divorced">Divorced</option>
+            </select>
+        </div>
+       
+        <div class="form-group">
+          <label for="smoke">Do you smoke? </label>
+          <input type="radio" value="Yes" id="smoke" name="smoke"  formControlName="smoke"> Yes
+          <input type="radio" value="No" id="smoke" name="smoke"  formControlName="smoke"> No
+        </div>
+
+        <div class="form-group">
+          <label for="drink">Do you drink alchohol? </label>
+          <input type="radio" value="Yes" id="drink" name="drink"  formControlName="drink"> Yes
+          <input type="radio" value="No" id="drink" name="drink" formControlName="drink"> No
+        </div>
+        
+       
+        <div class="form-group">
+          <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+        </div>
+       
+      </form>
+  
+
+
+<div *ngIf='isActive'>
+
+<h1>Result is: </h1>
+
+<p>Do you have allergies? : {{this.result["allergies"]}}</p>
+<p>What is your Gender? : {{this.result["gender"]}}</p>
+<p>What is your DOB? : {{this.result["dob"]}}</p>
+<p>What is your Country of Birth? : {{this.result["country"]}}</p>
+<p>What is your Maritial Status? : {{this.result["isMarried"]}}</p>
+<p>Do you Smoke? : {{this.result["smoke"]}}</p>
+<p>Do you Drink Alcohal? : {{this.result["drink"]}}</p>
+
+<p>The Details is: {{this.contactForm.value | json}}</p>
+</div>
+</mat-card>
+
+
+
+</div>
