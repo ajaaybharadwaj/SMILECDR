@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { patientData } from './patientData';
 
 @Injectable({
@@ -12,8 +13,7 @@ export class ConfigService {
   
 url: any = 'https://try.smilecdr.com/baseR4/Patient/';
 
-getData()
-{
-return this.http.get<patientData>(this.url);
+getData(): Observable<patientData[]> {
+return this.http.get<patientData[]>(this.url);
 }
 }

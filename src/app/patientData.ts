@@ -1,10 +1,6 @@
-export class patientData
+export interface patientData
 {
-    linkId:number;
-
-constructor(linkId: number)
-{
-this.linkId=linkId;
-}
+   id: number;
+   name: string;
 
 }
